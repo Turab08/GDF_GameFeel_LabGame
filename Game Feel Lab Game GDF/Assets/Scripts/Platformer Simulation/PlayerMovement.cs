@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private float horizontal;
 
+    public bool isAdvanced;
+
 
     void Awake()
     {
@@ -35,6 +37,11 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isAdvanced) {
+            Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            transform.up = Vector3.up + (moveDirection * 0.2f); 
+        }
+
         rb.velocity = new Vector3(horizontal * speed, rb.velocity.y, rb.velocity.z);
     } 
 }
